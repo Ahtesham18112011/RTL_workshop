@@ -68,3 +68,19 @@ begin
 end
 endmodule
 ```
+This Verilog code defines a 2-to-1 multiplexer module.
+
+- **Module Declaration**:
+  - Inputs: `i0`, `i1` (data inputs), `sel` (select line)
+  - Output: `y` (registered output)
+  
+- **Functionality**:
+  - The `always @ (*)` block is a combinational logic block sensitive to all inputs (`i0`, `i1`, `sel`).
+  - If `sel` is `1`, the output `y` is assigned the value of `i1`.
+  - If `sel` is `0`, the output `y` is assigned the value of `i0`.
+
+
+
+
+
+
