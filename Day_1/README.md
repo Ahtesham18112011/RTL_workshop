@@ -1,87 +1,135 @@
 # Day 1: Introduction to Verilog RTL Design and Synthesis
-This Day of the workshop introduces us to the Verilog HDL and explains a Verilog simulator known as Iverilog and its workings. Then explains us how to simulate our Verilog codes with Testbenches and how to obtain a `.vcd` file from the testbench. And then, introduces  us to the Yosys synthesiser, and finally about Sky130 PDK.
 
-**This day is divide into the following parts:**
+Welcome to Day 1 of the RTL workshop! This session introduces the basics of Verilog HDL, an open-source simulator called Icarus Verilog (iverilog), and guides you through simulating Verilog code with testbenches and analyzing output waveforms.
 
-## 1. Introduction to open-source simulator: iverilog
+---
 
-### Simulator
-A simulator is a software tool used to test the functionality of a digital circuit design by applying different input stimuli and observing the output behavior. It depends on the inputs of the design, and changes according to the inputs.
+## Prerequisites
 
-### Design
-Design is the actual verilog code or set of verilog codes which has the intended functionality to meet with the required specifications.
+- **Linux environment** (Ubuntu/Debian recommended)
+- **Basic terminal knowledge**
 
-### Testbench
-Verilog testbench is a simulation environment used to verify the functionality and correctness of a digital design described in the Verilog hardware description language (HDL).
-The purpose of a testbench is to provide a way to simulate the behavior of the design under various conditions, inputs, and scenarios before actually fabricating the physical hardware. It allows designers to catch bugs, validate functionality, and optimize designs without the cost and time associated with physical prototyping.
+---
+
+## Contents
+
+1. [Introduction to Open-Source Simulator: iverilog](#1-introduction-to-open-source-simulator-iverilog)
+2. [Lab: Simulating a 2-to-1 Multiplexer (good_mux) using iverilog](#2-lab-good_mux-using-iverilog)
+3. [Code Analysis](#analysis-of-the-verilog-code)
+4. [Summary](#summary)
+
+---
+
+## 1. Introduction to Open-Source Simulator: iverilog
+
+### What is a Simulator?
+
+A simulator is a software tool used to test the functionality of a digital circuit design by applying different input stimuli and observing the output. It allows you to validate your design before hardware fabrication.
+
+### What is a Design?
+
+A design is the actual Verilog code (or set of codes) that implements the required digital logic.
+
+### What is a Testbench?
+
+A Verilog testbench is a simulation environment used to verify the functionality and correctness of a digital design described in Verilog HDL. It applies different inputs and scenarios to the design, allowing you to check its behavior before moving to physical hardware.
 
 ![Screenshot (183)](https://github.com/user-attachments/assets/93927b96-df80-4da5-b801-284fc2cc6757)
 
-### Iverilog simulation flow
+### Iverilog Simulation Flow
 
 ![Screenshot (184)](https://github.com/user-attachments/assets/3ca190fb-cfa4-4abb-b9e1-0151b3c4bdba)
 
-As you can see, we put the design and the testbench to iverilog and, in return, it gives us the `.vcd` file which can be used to generate waveforms.
+As shown above, both the design and testbench are provided as input to iverilog. The simulator generates a `.vcd` file, which can be viewed as waveforms using GTKWave.
 
-## 2. Lab: good_mux using iverilog
+---
 
-So, first we need to clone the repository which has all the necessory verilog files and testbenches. Type the following command in the Linux terminal:-
+## 2. Lab: good_mux Using iverilog
+
+Let's simulate a 2-to-1 multiplexer using iverilog. Follow these steps:
+
+### Step 1: Clone the Required Repository
 
 ```shell
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
 ```
-Then, after cloning done, type:-
+
+### Step 2: Install Required Tools
+
+Install iverilog (simulator) and gtkwave (waveform viewer):
 
 ```shell
-cd verilog_files
+sudo apt install iverilog
+sudo apt install gtkwave
 ```
-Then, now we  need to install iverilog. type this on terminal:-
-```shell
-apt install iverilog
-```
-Then, also install gtkwave for wave production, by typing:-
-```shell
-apt install gtkwave
-```
-So, this  is a lab for a mux so i will obtain the `.vcd` file for the mux for the output, by typing:-
+
+### Step 3: Simulate the Design
+
+Compile the design and testbench:
+
 ```shell
 iverilog good_mux.v tb_good_mux.v
 ```
-Then type:-
+
+Run the simulation:
+
 ```shell
 ./a.out
 ```
-Then type:-
+
+Generate and view the waveform:
+
 ```shell
 gtkwave tb_good_mux.vcd
 ```
-Then the gtkwave will be opened, you can observe the waveforms
+
+GTKWave will open, allowing you to observe the simulated waveforms.
 
 ![Screenshot_2025-05-28_12-39-30](https://github.com/user-attachments/assets/701e8189-3101-4a82-8134-e799521b9a8b)
 
-### Analysis of the verilog code
-This is the verilog code present in the [good_mux.v](https://github.com/Ahtesham18112011/RTL_workshop/blob/main/Day_1/good_mux.v)
+---
+
+## Analysis of the Verilog Code
+
+The Verilog code for the multiplexer is found in [`good_mux.v`](https://github.com/Ahtesham18112011/RTL_workshop/blob/main/Day_1/good_mux.v):
+
 ```verilog
-module good_mux (input i0 , input i1 , input sel , output reg y);
+module good_mux (input i0, input i1, input sel, output reg y);
 always @ (*)
 begin
-	if(sel)
-		y <= i1;
-	else 
-		y <= i0;
+    if(sel)
+        y <= i1;
+    else 
+        y <= i0;
 end
 endmodule
 ```
-This Verilog code defines a 2-to-1 multiplexer module.
 
-- **Module Declaration**:
+**Explanation:**
+
+- **Module Declaration:**
   - Inputs: `i0`, `i1` (data inputs), `sel` (select line)
   - Output: `y` (registered output)
-  
-- **Functionality**:
-  - The `always @ (*)` block is a combinational logic block sensitive to all inputs (`i0`, `i1`, `sel`).
+
+- **Functionality:**
+  - The `always @ (*)` block describes combinational logic, sensitive to all inputs.
   - If `sel` is `1`, the output `y` is assigned the value of `i1`.
   - If `sel` is `0`, the output `y` is assigned the value of `i0`.
+
+---
+
+## Summary
+
+On Day 1, you learned how to:
+
+- Use iverilog to simulate Verilog designs and testbenches
+- Install and use GTKWave to analyze simulation results
+- Understand the role of testbenches in digital design verification
+- Simulate a simple 2-to-1 multiplexer and interpret its output
+
+
+---
 
 
 
