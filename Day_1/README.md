@@ -119,17 +119,6 @@ endmodule
 
 ---
 
-## Summary
-
-On Day 1, you learned how to:
-
-- Use iverilog to simulate Verilog designs and testbenches
-- Install and use GTKWave to analyze simulation results
-- Understand the role of testbenches in digital design verification
-- Simulate a simple 2-to-1 multiplexer and interpret its output
-
-
----
 
 
 
