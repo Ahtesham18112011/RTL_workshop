@@ -141,10 +141,29 @@ Logic gates in a library file come in different "flavors" to give designers flex
 6. **Technology Mapping**: During synthesis (e.g., with Yosys), the tool selects the best gate flavor from the library to match the target hardware (FPGA or ASIC) and design constraints.
 
 ## Synthesis of the good_mux verilog code
-Let's synthesis the above good_mux code using the open-source software Yosys
+Let's synthesis the above good_mux code using the open-source software Yosys.
 
 Type the following command in the terminal:-
 ```shell
 yosys
 ```
-
+Then type the following command:-
+```shell
+read_liberty -lib /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+Then type the command for reading the verilog code:-
+```shell
+read_verilog /home/vsduser/VLSI/sky130RTLDesignAndSynthesisWorkshop/verilog_files/good_mux.v
+```
+Then type the following command to synthesis the verilog code:-
+```shell
+synth -top good_mux
+```
+Then type:-
+```shell
+abc -liberty /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+Then finally to show the gate-level model for this verilog code type:-
+```shell
+show
+```
