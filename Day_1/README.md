@@ -92,7 +92,7 @@ GTKWave will open, allowing you to observe the simulated waveforms.
 
 ## Analysis of the Verilog Code
 
-The Verilog code for the multiplexer is found in [`good_mux.v`](https://github.com/Ahtesham18112011/RTL_workshop/blob/main/Day_1/good_mux.v):
+This is a Verilog code for the multiplexer that is found in [`good_mux.v`](https://github.com/Ahtesham18112011/RTL_workshop/blob/main/Day_1/good_mux.v):
 
 ```verilog
 module good_mux (input i0, input i1, input sel, output reg y);
