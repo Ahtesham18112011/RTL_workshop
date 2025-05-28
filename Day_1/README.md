@@ -27,7 +27,7 @@ As you can see, we put the design and the testbench to iverilog and, in return, 
 
 So, first we need to clone the repository which has all the necessory verilog filer and testbenches. Type the following command in the Linux terminal:-
 
-```bash
+```shell
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
 ```
 
