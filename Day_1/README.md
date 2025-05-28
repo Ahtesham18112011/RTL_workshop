@@ -53,3 +53,6 @@ gtkwave tb_good_mux.vcd
 ```
 Then the gtkwave will be opened, you can observe the waveforms
 
+![Screenshot_2025-05-28_12-39-30](https://github.com/user-attachments/assets/701e8189-3101-4a82-8134-e799521b9a8b)
+
+
