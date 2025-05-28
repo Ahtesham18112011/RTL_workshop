@@ -15,4 +15,4 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 * [Shone Taware](https://www.linkedin.com/in/shon-taware/)
 
 ## Author
-My name is Ahtesham Ahmed. I am currently studying in class 8 Army Public School No1, Jabalpur. You can also connect with me in Linkedin
+My name is Ahtesham Ahmed. I am currently studying in class 8 Army Public School No1, Jabalpur. You can also connect with me in [**Linkedin**](https://www.linkedin.com/in/ahtesham-ahmed-779845365/).
