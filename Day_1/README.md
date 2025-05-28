@@ -3,7 +3,7 @@ This Day of the workshop introduces us to the Verilog HDL and explains a Verilog
 
 **This day is divide into the following parts:**
 
-## 1. Introduction to open-source simulator iverilog
+## 1. Introduction to open-source simulator: iverilog
 
 #### Simulator
 A simulator is a software tool used to test the functionality of a digital circuit design by applying different input stimuli and observing the output behavior. It depends on the inputs of the design, and changes according to the inputs.
@@ -14,4 +14,7 @@ Design is the actual verilog code or set of verilog codes which has the intended
 #### Testbench
 Verilog testbench is a simulation environment used to verify the functionality and correctness of a digital design described in the Verilog hardware description language (HDL).
 The purpose of a testbench is to provide a way to simulate the behavior of the design under various conditions, inputs, and scenarios before actually fabricating the physical hardware. It allows designers to catch bugs, validate functionality, and optimize designs without the cost and time associated with physical prototyping.
+
+![Screenshot (183)](https://github.com/user-attachments/assets/93927b96-df80-4da5-b801-284fc2cc6757)
+
 
