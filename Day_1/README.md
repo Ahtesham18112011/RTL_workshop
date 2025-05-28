@@ -25,7 +25,7 @@ As you can see, we put the design and the testbench to iverilog and, in return, 
 
 ## 2. Lab: good_mux using iverilog
 
-So, first we need to clone the repository which has all the necessory verilog filer and testbenches. Type the following command in the Linux terminal:-
+So, first we need to clone the repository which has all the necessory verilog files and testbenches. Type the following command in the Linux terminal:-
 
 ```shell
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
