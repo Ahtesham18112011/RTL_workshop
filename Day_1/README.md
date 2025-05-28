@@ -23,4 +23,13 @@ The purpose of a testbench is to provide a way to simulate the behavior of the d
 
 As you can see, we put the design and the testbench to iverilog and, in return, it gives us the `.vcd` file which can be used to generate waveforms.
 
+## 2. Lab: good-mux using iverilog
+
+So, first we need to clone the repository which has all the necessory verilog filer and testbenches. Type the following command in the Linux terminal:-
+
+```bash
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+```
+
+
 
