@@ -146,4 +146,11 @@ Logic gates in a library file come in different "flavors" to give designers flex
 
 6. **Technology Mapping**: During synthesis (e.g., with Yosys), the tool selects the best gate flavor from the library to match the target hardware (FPGA or ASIC) and design constraints.
 
+## Synthesis of the good_mux verilog code
+Let's synthesis the above good_mux code using the open-source software Yosys
+
+Type the following command in the terminal:-
+```shell
+yosys
+```
 
