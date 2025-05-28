@@ -49,6 +49,10 @@ iverilog good_mux.v tb_good_mux.v
 ```
 Then type:-
 ```shell
+./a.out
+```
+Then type:-
+```shell
 gtkwave tb_good_mux.vcd
 ```
 Then the gtkwave will be opened, you can observe the waveforms
