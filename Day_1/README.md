@@ -1,11 +1,11 @@
-# 🌟 Day 1: Introduction to Verilog RTL Design & Synthesis
+#  Day 1: Introduction to Verilog RTL Design & Synthesis
 
 Welcome to **Day 1** of the RTL Workshop!  
 Today, you'll embark on your journey into digital design by learning Verilog, open-source simulation with **Icarus Verilog (iverilog)**, and the basics of logic synthesis using **Yosys**. This guide will walk you through practical labs, essential concepts, and insightful explanations to help you build a strong foundation in RTL design.
 
 ---
 
-## 📚 Table of Contents
+##  Table of Contents
 
 1. [What is a Simulator, Design, and Testbench?](#1-what-is-a-simulator-design-and-testbench)
 2. [Getting Started with iverilog](#2-getting-started-with-iverilog)
@@ -19,15 +19,15 @@ Today, you'll embark on your journey into digital design by learning Verilog, op
 
 ## 1. What is a Simulator, Design, and Testbench?
 
-### 🖥️ Simulator
+###  Simulator
 
 A **simulator** is a software tool that checks your digital circuit’s functionality by applying test inputs and viewing outputs. This helps you verify your design before hardware implementation.
 
-### 📐 Design
+###  Design
 
 The **design** is your Verilog code describing the intended logic functionality.
 
-### 🧪 Testbench
+###  Testbench
 
 A **testbench** is a simulation environment that applies various inputs to your design and checks if the outputs are correct.
 
@@ -54,21 +54,21 @@ A **testbench** is a simulation environment that applies various inputs to your 
 
 Let’s simulate a simple **2-to-1 multiplexer** using iverilog!
 
-### 🚀 Step 1: Clone the Workshop Repository
+###  Step 1: Clone the Workshop Repository
 
 ```shell
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
 cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
 ```
 
-### 🛠️ Step 2: Install Required Tools
+###  Step 2: Install Required Tools
 
 ```shell
 sudo apt install iverilog
 sudo apt install gtkwave
 ```
 
-### ▶️ Step 3: Simulate the Design
+###  Step 3: Simulate the Design
 
 Compile the design and testbench:
 
@@ -110,7 +110,7 @@ end
 endmodule
 ```
 
-### 🔎 **How It Works**
+###  **How It Works**
 
 - **Inputs:** `i0`, `i1` (data), `sel` (select line)
 - **Output:** `y` (registered output)
@@ -120,7 +120,7 @@ endmodule
 
 ## 5. Introduction to Yosys & Gate Libraries
 
-### 🛠️ What is Yosys?
+###  What is Yosys?
 
 **Yosys** is a powerful open-source synthesis tool for digital hardware. It takes your Verilog code and converts it into a gate-level netlist—a hardware blueprint.
 
@@ -132,7 +132,7 @@ endmodule
 - **Verification:** Checks correctness
 - **Extensibility:** Supports custom flows
 
-### 🏛️ Why Do Libraries Have Different Gate "Flavors"?
+###  Why Do Libraries Have Different Gate "Flavors"?
 
 A `.lib` file contains many versions of each gate (like AND, OR, NOT) with different properties:
 
@@ -149,7 +149,7 @@ A `.lib` file contains many versions of each gate (like AND, OR, NOT) with diffe
 
 Let’s synthesize the `good_mux` design using Yosys!
 
-### 🏗️ Step-by-Step Yosys Flow
+###  Step-by-Step Yosys Flow
 
 1. **Start Yosys**
     ```shell
