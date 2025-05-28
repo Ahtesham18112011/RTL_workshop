@@ -130,7 +130,7 @@ Here’s what Yosys does in simple terms:
 - **Extensibility**: Lets you add custom features or connect it with other tools.
 
 ## Why do we need  different flavors of gate in a `.lib` file?
-
+A library file in digital design, often used with tools like Yosys, contains a collection of logic gates and cells (e.g., AND, OR, NOT, flip-flops) with varying characteristics.
 
 Logic gates in a library file come in different "flavors" to give designers flexibility when synthesizing and optimizing digital circuits. Each flavor has unique characteristics, like size, speed, or power consumption, to meet specific design goals. Here's why we need them:
 
