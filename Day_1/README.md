@@ -36,7 +36,7 @@ Then, after cloning done, type:-
 cd verilog_files
 ```
 Then, now we  need to install iverilog. type this on terminal:-
-``shell
+```shell
 apt install iverilog
 ```
 Then, also install gtkwave for wave production, by typing:-
