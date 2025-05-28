@@ -4,12 +4,6 @@ Welcome to Day 1 of the RTL workshop! This session introduces the basics of Veri
 
 ---
 
-## Prerequisites
-
-- **Linux environment** (Ubuntu/Debian recommended)
-- **Basic terminal knowledge**
-
----
 
 ## Contents
 
