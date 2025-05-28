@@ -193,7 +193,7 @@ Let’s synthesize the `good_mux` design using Yosys!
 - You ran your first Verilog simulation with iverilog and visualized waveforms.
 - You analyzed the 2-to-1 mux code.
 - You explored Yosys and learned why gate libraries have various flavors.
-- You synthesized your first design!
+
 
 ---
 
