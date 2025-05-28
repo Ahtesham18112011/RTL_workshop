@@ -167,3 +167,5 @@ Then finally to show the gate-level model for this verilog code type:-
 ```shell
 show
 ```
+![Screenshot_2025-05-28_20-38-22](https://github.com/user-attachments/assets/4b3a9939-92d0-4efc-ad69-e96faf19e6c3)
+
