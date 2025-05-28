@@ -56,7 +56,7 @@ Then the gtkwave will be opened, you can observe the waveforms
 ![Screenshot_2025-05-28_12-39-30](https://github.com/user-attachments/assets/701e8189-3101-4a82-8134-e799521b9a8b)
 
 ### Analysis of the verilog code
-This is the verilog code present in the good_mux.v
+This is the verilog code present in the [good_mux.v](https://github.com/Ahtesham18112011/RTL_workshop/blob/main/Day_1/good_mux.v)
 ```verilog
 module good_mux (input i0 , input i1 , input sel , output reg y);
 always @ (*)
