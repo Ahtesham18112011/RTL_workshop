@@ -1,6 +1,6 @@
 # Day 1: Introduction to Verilog RTL Design and Synthesis
 
-Welcome to Day 1 of the RTL workshop! This session introduces the basics of Verilog HDL, an open-source simulator called Icarus Verilog (iverilog), and guides you through simulating Verilog code with testbenches and analyzing output waveforms.
+Welcome to Day 1 of the RTL workshop! This session introduces the basics of Verilog HDL, an open-source simulator called Icarus Verilog (iverilog), and guides you through simulating Verilog code with testbenches and analyzing output waveforms. And also introduces the synthesizer Yosys.
 
 ---
 
