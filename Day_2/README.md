@@ -10,3 +10,29 @@ The SKY130 PDK is an open-source Process Design Kit (PDK) based on SkyWater Tech
 ### What is the meaning and use of tt_025C_1v80 in the sky130 PDK?
 You would have this question in your mind when you saw the file name. Actually the tt stands for typical process, and 025C is the temperarure in the chip because CMOS technique is too sensitiive on temperatures, and the 1v80 is the voltage.
 
+
+---
+
+### Opening the `lib` file
+
+To open the `sky130_fd_sc_hd__tt_025C_1v80.lib` file we need to type the following commands in the terminal:-
+
+First, we need to type this command for downloading the `.lib` file veiwer.
+```shell
+sudo apt install gedit
+```
+Second, after installation type the command after navigating to the directory where your `.lib` file is present to open the `.lib` file:-
+```shell
+gedit sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+---
+
+
+
+
+
+
+
+
+
+
