@@ -30,7 +30,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 
 ---
 
-
+## Hierarchical vs Flattened Synthesis
 ### **Hierarchical Synthesis**
 - **Definition**: Hierarchical synthesis preserves the module hierarchy of the design as defined in the original RTL (Register-Transfer Level) code. Each module is synthesized separately, and the boundaries between modules are maintained.
 - **How it Works**:
