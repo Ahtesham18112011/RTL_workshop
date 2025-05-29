@@ -57,7 +57,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **Advantages**:
   - **Maximum Optimization**: By treating the design as a single unit, Yosys can perform aggressive optimizations across the entire design, such as logic sharing, constant propagation, and gate reduction, potentially leading to a smaller or faster netlist.
   - **Simpler Netlist**: A flattened design results in a single module, which can simplify certain downstream processes, such as logic equivalence checking or some forms of place-and-route.
-  - **Better Performance**: Cross-module optimizations can improve timing or reduce area compared to hierarchical synthesis.discussions/1647)
+  - **Better Performance**: Cross-module optimizations can improve timing or reduce area compared to hierarchical synthesis.
 - **Disadvantages**:
   - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit. For example, a Reddit user noted that flattening a RISC-V core resulted in 1.6 million instances, making place-and-route difficult.
   - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.
