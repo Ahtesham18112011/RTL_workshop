@@ -35,15 +35,15 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **Definition**: Hierarchical synthesis preserves the module hierarchy of the design as defined in the original RTL (Register-Transfer Level) code. Each module is synthesized separately, and the boundaries between modules are maintained.
 - **How it Works**:
   - Yosys processes each module in the design hierarchy independently, performing optimizations (e.g., logic simplification, constant propagation) within the module without crossing module boundaries.
-  - The `hierarchy` command in Yosys is typically used early in the synthesis flow to analyze and set up the design hierarchy, ensuring the top module is identified and unused modules are removed.[](https://yosyshq.readthedocs.io/projects/yosys/en/0.46/getting_started/example_synth.html)
-  - The `keep_hierarchy` attribute can be used to explicitly prevent specific modules or cells from being flattened, preserving their structure.[](https://www.reddit.com/r/yosys/comments/2x2vmj/preserve_names_of_hierarchical_ports_and_a_few/)[](https://yosyshq.readthedocs.io/projects/yosys/en/0.37/cmd/flatten.html)
+  - The `hierarchy` command in Yosys is typically used early in the synthesis flow to analyze and set up the design hierarchy, ensuring the top module is identified and unused modules are removed.
+  - The `keep_hierarchy` attribute can be used to explicitly prevent specific modules or cells from being flattened, preserving their structure.
 - **Advantages**:
-  - **Faster Runtime**: Since optimizations are applied module by module, hierarchical synthesis can be faster, especially for large designs with many modules, as it avoids processing the entire design as a single unit.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
-  - **Better Debugging and Analysis**: Preserving the hierarchy makes it easier to map the synthesized netlist back to the original RTL, aiding in debugging, timing analysis, and area/power reporting for specific modules.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
-  - **Modularity**: Useful for designs where maintaining module boundaries is important, such as when integrating with other tools (e.g., place-and-route) that rely on hierarchical information.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
+  - **Faster Runtime**: Since optimizations are applied module by module, hierarchical synthesis can be faster, especially for large designs with many modules, as it avoids processing the entire design as a single unit.
+  - **Better Debugging and Analysis**: Preserving the hierarchy makes it easier to map the synthesized netlist back to the original RTL, aiding in debugging, timing analysis, and area/power reporting for specific modules.
+  - **Modularity**: Useful for designs where maintaining module boundaries is important, such as when integrating with other tools (e.g., place-and-route) that rely on hierarchical information.[]
 - **Disadvantages**:
-  - **Limited Optimization**: Optimizations are restricted to within each module, so opportunities for cross-module optimizations (e.g., sharing logic across modules) are missed, potentially leading to a less optimized design in terms of area or performance.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
-  - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
+  - **Limited Optimization**: Optimizations are restricted to within each module, so opportunities for cross-module optimizations (e.g., sharing logic across modules) are missed, potentially leading to a less optimized design in terms of area or performance.
+  - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.[](https://
 
 
 ---
@@ -51,17 +51,17 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 ### **Flattened Synthesis**
 - **Definition**: Flattened synthesis collapses the entire design hierarchy into a single, flat module, removing all module boundaries. The design is treated as one large netlist during synthesis.
 - **How it Works**:
-  - The `flatten` command in Yosys replaces all module instances with their implementations, effectively merging all submodules into the top-level module.[](https://yosyshq.readthedocs.io/projects/yosys/en/0.37/cmd/flatten.html)
+  - The `flatten` command in Yosys replaces all module instances with their implementations, effectively merging all submodules into the top-level module.
   - This results in a single module containing all the logic, which is then optimized as a whole.
-  - Flattening is often performed explicitly with the `flatten` command or implicitly in certain synthesis flows (e.g., `synth_ice40` defaults to flattening unless overridden with `-noflatten`).[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
+  - Flattening is often performed explicitly with the `flatten` command or implicitly in certain synthesis flows (e.g., `synth_ice40` defaults to flattening unless overridden with `-noflatten`).[]
 - **Advantages**:
-  - **Maximum Optimization**: By treating the design as a single unit, Yosys can perform aggressive optimizations across the entire design, such as logic sharing, constant propagation, and gate reduction, potentially leading to a smaller or faster netlist.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
+  - **Maximum Optimization**: By treating the design as a single unit, Yosys can perform aggressive optimizations across the entire design, such as logic sharing, constant propagation, and gate reduction, potentially leading to a smaller or faster netlist.
   - **Simpler Netlist**: A flattened design results in a single module, which can simplify certain downstream processes, such as logic equivalence checking or some forms of place-and-route.
-  - **Better Performance**: Cross-module optimizations can improve timing or reduce area compared to hierarchical synthesis.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
+  - **Better Performance**: Cross-module optimizations can improve timing or reduce area compared to hierarchical synthesis.discussions/1647)
 - **Disadvantages**:
-  - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit. For example, a Reddit user noted that flattening a RISC-V core resulted in 1.6 million instances, making place-and-route difficult.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
-  - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.[](https://www.reddit.com/r/yosys/comments/2x2vmj/preserve_names_of_hierarchical_ports_and_a_few/)
-  - **Increased Complexity**: For very large designs, a flattened netlist can become unwieldy, increasing memory usage and complicating physical implementation.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
+  - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit. For example, a Reddit user noted that flattening a RISC-V core resulted in 1.6 million instances, making place-and-route difficult.
+  - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.
+  - **Increased Complexity**: For very large designs, a flattened netlist can become unwieldy, increasing memory usage and complicating physical implementation.
 
 ### **Key Differences**
 | Aspect                  | Hierarchical Synthesis                     | Flattened Synthesis                       |
