@@ -25,6 +25,9 @@ Second, after installation type the command after navigating to the directory wh
 ```shell
 gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
+![image](https://github.com/user-attachments/assets/8ab83ac1-d95d-495a-995b-b98944c6fe28)
+
+
 ---
 
 
