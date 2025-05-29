@@ -44,9 +44,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **Disadvantages**:
   - **Limited Optimization**: Optimizations are restricted to within each module, so opportunities for cross-module optimizations (e.g., sharing logic across modules) are missed, potentially leading to a less optimized design in terms of area or performance.[](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/discussions/1647)
   - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
-- **Use Case**:
-  - Hierarchical synthesis is preferred when you need to maintain the design's modularity for analysis, reuse, or compatibility with downstream tools.
-  - Example: Synthesizing a RISC-V core where you want area and power reports broken down by module boundaries, as mentioned in a Reddit discussion.[](https://www.reddit.com/r/yosys/comments/6u3q6e/
+
 
 ---
 
@@ -64,11 +62,6 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
   - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit. For example, a Reddit user noted that flattening a RISC-V core resulted in 1.6 million instances, making place-and-route difficult.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
   - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.[](https://www.reddit.com/r/yosys/comments/2x2vmj/preserve_names_of_hierarchical_ports_and_a_few/)
   - **Increased Complexity**: For very large designs, a flattened netlist can become unwieldy, increasing memory usage and complicating physical implementation.[](https://www.reddit.com/r/yosys/comments/6u3q6e/hierarchical_synthesis/)
-- **Use Case**:
-  - Flattened synthesis is ideal when the goal is to maximize optimization for area or performance and when modularity is less critical.
-  - Example: A Stack Overflow user reported better optimization results after flattening a design to reduce gate count in a simple circuit.[](https://stackoverflow.com/questions/67075867/yosys-
-
----
 
 ### **Key Differences**
 | Aspect                  | Hierarchical Synthesis                     | Flattened Synthesis                       |
