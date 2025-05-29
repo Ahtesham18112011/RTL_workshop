@@ -69,6 +69,11 @@ Below is the example of a synthesized hierarchical verilog  module:-
   - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit.
   - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.
   - **Increased Complexity**: For very large designs, a flattened netlist can become unwieldy, increasing memory usage and complicating physical implementation.
+### Example
+Below is an example of the same verilog as of above code but flattened. This can be done just by writing the command flatten in the terminal after the normal synthesis.
+
+![Screenshot_2025-05-29_19-20-47](https://github.com/user-attachments/assets/3bb17602-62f1-4f6b-94ea-c279ac04754f)
+
 
 ### **Key Differences**
 | Aspect                  | Hierarchical Synthesis                     | Flattened Synthesis                       |
@@ -81,10 +86,7 @@ Below is the example of a synthesized hierarchical verilog  module:-
 | **Use Case**            | Modularity, debugging, reporting           | Maximum optimization, simpler netlist    |
 
 
-### Example
-Below is an example of the same verilog as of above code but flattened. This can be done just by writing the command flatten in the terminal after the normal synthesis.
 
-![Screenshot_2025-05-29_19-20-47](https://github.com/user-attachments/assets/3bb17602-62f1-4f6b-94ea-c279ac04754f)
 
 
 ---
