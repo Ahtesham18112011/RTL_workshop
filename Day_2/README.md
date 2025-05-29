@@ -34,7 +34,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 ### **Hierarchical Synthesis**
 - **Definition**: Hierarchical synthesis preserves the module hierarchy of the design as defined in the original RTL (Register-Transfer Level) code. Each module is synthesized separately, and the boundaries between modules are maintained.
 - **How it Works**:
-  - Yosys processes each module in the design hierarchy independently, performing optimizations (e.g., logic simplification, constant propagation) within the module without crossing module boundaries.
+  - Yosys processes each module in the design hierarchy independently, performing optimizations.
   - The `hierarchy` command in Yosys is typically used early in the synthesis flow to analyze and set up the design hierarchy, ensuring the top module is identified and unused modules are removed.
   
 - **Advantages**:
@@ -44,6 +44,13 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **Disadvantages**:
   - **Limited Optimization**: Optimizations are restricted to within each module, so opportunities for cross-module optimizations (e.g., sharing logic across modules) are missed, potentially leading to a less optimized design in terms of area or performance.
   - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.
+
+### Example
+Below is the example of a synthesized hierarchical verilog  module:-
+
+
+![Screenshot_2025-05-29_19-04-48](https://github.com/user-attachments/assets/ffb36278-3d7d-457a-8236-c63e3ad2fd36)
+
 
 
 ---
@@ -59,7 +66,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
   - **Simpler Netlist**: A flattened design results in a single module, which can simplify certain downstream processes, such as logic equivalence checking or some forms of place-and-route.
   - **Better Performance**: Cross-module optimizations can improve timing or reduce area compared to hierarchical synthesis.
 - **Disadvantages**:
-  - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit. For example, a Reddit user noted that flattening a RISC-V core resulted in 1.6 million instances, making place-and-route difficult.
+  - **Longer Runtime**: Flattening can significantly increase synthesis time for large designs, as the entire design is processed as a single unit.
   - **Loss of Hierarchy**: The flattened netlist loses the original module structure, which can make debugging, timing analysis, and area/power reporting more challenging, as it’s harder to trace back to the RTL.
   - **Increased Complexity**: For very large designs, a flattened netlist can become unwieldy, increasing memory usage and complicating physical implementation.
 
@@ -72,6 +79,13 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 | **Debugging**           | Easier to trace back to RTL                | Harder due to loss of hierarchy          |
 | **Output Complexity**   | Maintains modular structure                | Single, potentially complex netlist      |
 | **Use Case**            | Modularity, debugging, reporting           | Maximum optimization, simpler netlist    |
+
+
+### Example
+Below is an example of the same verilog as of above code but flattened. This can be done just by writing the command flatten in the terminal after the normal synthesis.
+
+![Screenshot_2025-05-29_19-20-47](https://github.com/user-attachments/assets/3bb17602-62f1-4f6b-94ea-c279ac04754f)
+
 
 ---
 
