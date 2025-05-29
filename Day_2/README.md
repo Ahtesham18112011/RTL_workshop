@@ -53,7 +53,7 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **How it Works**:
   - The `flatten` command in Yosys replaces all module instances with their implementations, effectively merging all submodules into the top-level module.
   - This results in a single module containing all the logic, which is then optimized as a whole.
-  - Flattening is often performed explicitly with the `flatten` command or implicitly in certain synthesis flows (e.g., `synth_ice40` defaults to flattening unless overridden with `-noflatten`).[]
+
 - **Advantages**:
   - **Maximum Optimization**: By treating the design as a single unit, Yosys can perform aggressive optimizations across the entire design, such as logic sharing, constant propagation, and gate reduction, potentially leading to a smaller or faster netlist.
   - **Simpler Netlist**: A flattened design results in a single module, which can simplify certain downstream processes, such as logic equivalence checking or some forms of place-and-route.
