@@ -36,14 +36,14 @@ gedit sky130_fd_sc_hd__tt_025C_1v80.lib
 - **How it Works**:
   - Yosys processes each module in the design hierarchy independently, performing optimizations (e.g., logic simplification, constant propagation) within the module without crossing module boundaries.
   - The `hierarchy` command in Yosys is typically used early in the synthesis flow to analyze and set up the design hierarchy, ensuring the top module is identified and unused modules are removed.
-  - The `keep_hierarchy` attribute can be used to explicitly prevent specific modules or cells from being flattened, preserving their structure.
+  
 - **Advantages**:
   - **Faster Runtime**: Since optimizations are applied module by module, hierarchical synthesis can be faster, especially for large designs with many modules, as it avoids processing the entire design as a single unit.
   - **Better Debugging and Analysis**: Preserving the hierarchy makes it easier to map the synthesized netlist back to the original RTL, aiding in debugging, timing analysis, and area/power reporting for specific modules.
-  - **Modularity**: Useful for designs where maintaining module boundaries is important, such as when integrating with other tools (e.g., place-and-route) that rely on hierarchical information.[]
+  - **Modularity**: Useful for designs where maintaining module boundaries is important, such as when integrating with other tools (e.g., place-and-route) that rely on hierarchical information.
 - **Disadvantages**:
   - **Limited Optimization**: Optimizations are restricted to within each module, so opportunities for cross-module optimizations (e.g., sharing logic across modules) are missed, potentially leading to a less optimized design in terms of area or performance.
-  - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.[](https://
+  - **Complex Reporting**: Generating detailed reports (e.g., area, power) for each hierarchical entity requires additional steps, such as using the `stat` command with a liberty file.
 
 
 ---
