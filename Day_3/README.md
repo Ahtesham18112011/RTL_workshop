@@ -20,7 +20,9 @@ Constant propagation involves analyzing the design description (e.g., a hardware
 ![image](https://github.com/user-attachments/assets/d7f06056-66c1-44af-99a8-623fdf5879be)
 
 ## 2. State optimization
-In VLSI, state optimization is the process of refining finite state machines (FSMs) to enhance efficiency in integrated circuit design. It focuses on reducing the number of states, optimizing state encoding, merging equivalent states, or eliminating redundancies to lower power consumption, reduce chip area, and improve performance. **How it is done**:
+In VLSI, state optimization is the process of refining finite state machines (FSMs) to enhance efficiency in integrated circuit design. It focuses on reducing the number of states, optimizing state encoding, merging equivalent states, or eliminating redundancies to lower power consumption, reduce chip area, and improve performance.
+
+**How it is done**:
 
 - **State Reduction**: Equivalent states (producing identical outputs for the same inputs) are identified and merged using algorithms like the partition-based method or implication tables.
 - **State Encoding**: States are assigned binary codes (e.g., binary, Gray, or one-hot encoding) to minimize switching activity and logic complexity, often using tools like CAD software.
