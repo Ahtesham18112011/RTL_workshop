@@ -100,7 +100,7 @@ Below is an example of the same verilog as of above code but flattened. This can
 ## Synthesis with Flip-Flops
 A flip flop is an electronic circuit with two stable states that can be used to store binary data. The stored data can be changed by applying varying inputs. Flip-flops and latches are fundamental building blocks of digital electronics systems used in computers, communications, and many other types of systems. It is used to recover the glitch caused by delays of the gates in combinational circuits also.
 
-### Analysis of the verilog code
+### Analysis of the verilog code for asynchronous reset D Flip-Flop
 Below is the verilog module for a asynchronous reset D Flip-Flop.
 ```verilog
 module dff_asyncres ( input clk ,  input async_reset , input d , output reg q );
@@ -158,6 +158,64 @@ end
 - **Edge-Triggered**: The data (`d`) is captured and assigned to `q` only on the rising edge of `clk` when `async_reset` is low.
 - **Single-Bit Storage**: The flip-flop stores a single bit, as `q` and `d` are single-bit signals.
 
+
+### Analysis of the verilog code for asynchronous set D Flip-Flop
+Below is the verilog code for a asynchronous set D Flip-Flop:-
+```verilog
+module dff_async_set ( input clk ,  input async_set , input d , output reg q );
+always @ (posedge clk , posedge async_set)
+begin
+	if(async_set)
+		q <= 1'b1;
+	else	
+		q <= d;
+end
+endmodule
+```
+The provided Verilog code describes a D flip-flop (DFF) with an asynchronous set. Let me analyze the module and explain its functionality:
+
+### Module Analysis
+- **Module Name**: `dff_async_set`
+- **Inputs**:
+  - `clk`: Clock signal (triggers on positive edge).
+  - `async_set`: Asynchronous set signal (active high, triggers on positive edge).
+  - `d`: Data input to the flip-flop.
+- **Output**:
+  - `q`: Registered output (single bit, declared as `reg`).
+- **Functionality**:
+  - The flip-flop captures the value of `d` on the rising edge of `clk` and assigns it to `q`.
+  - If `async_set` is high (on its rising edge), `q` is set to `1'b1` (1) regardless of the clock.
+  - The set is asynchronous, meaning it does not depend on the clock signal.
+
+### Code Explanation
+```verilog
+module dff_async_set ( input clk, input async_set, input d, output reg q );
+```
+- Declares the module with three inputs (`clk`, `async_set`, `d`) and one output (`q`).
+
+```verilog
+always @ (posedge clk, posedge async_set)
+```
+- The `always` block is sensitive to:
+  - The positive (rising) edge of `clk`.
+  - The positive (rising) edge of `async_set`.
+
+```verilog
+begin
+    if (async_set)
+        q <= 1'b1;
+    else
+        q <= d;
+end
+```
+- If `async_set` is high (1), `q` is set to `1'b1` (1).
+- Otherwise, on the rising edge of `clk`, `q` takes the value of `d`.
+- The `<=` operator indicates non-blocking assignments, standard for sequential logic in Verilog.
+
+### Key Characteristics
+- **Asynchronous Set**: The set (`async_set`) takes precedence over the clock and can change `q` to `1` immediately when `async_set` goes high, without waiting for a clock edge.
+- **Edge-Triggered**: The data (`d`) is captured and assigned to `q` only on the rising edge of `clk` when `async_set` is low.
+- **Single-Bit Storage**: The flip-flop stores a single bit, as `q` and `d` are single-bit signals.
 
 
 
