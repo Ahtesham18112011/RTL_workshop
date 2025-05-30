@@ -28,7 +28,7 @@ In VLSI, state optimization is the process of refining finite state machines (FS
 - **State Encoding**: States are assigned binary codes (e.g., binary, Gray, or one-hot encoding) to minimize switching activity and logic complexity, often using tools like CAD software.
 - **Logic Minimization**: Boolean algebra or tools like Espresso optimize the logic equations governing state transitions.
 - **Power Optimization**: Techniques like clock gating or power-aware encoding reduce dynamic power during state changes.
-These steps are typically implemented using design automation tools (e.g., Synopsys, Cadence) to ensure efficient FSM implementation in VLSI circuits.
+
 
 ## Cloning
 In VLSI, cloning involves duplicating a logic cell or module in a circuit design to optimize performance, reduce power consumption, or improve timing by balancing load or reducing wire length. It maintains signal integrity and meets design constraints. 
@@ -40,6 +40,17 @@ In VLSI, cloning involves duplicating a logic cell or module in a circuit design
 - **Place and Route**: Use placement tools to position the cloned cell optimally and route new connections.
 - **Verify**: Run timing and power analysis to ensure the cloning improves performance without violating constraints.
 
+![image](https://github.com/user-attachments/assets/6bdd2c12-02a2-4ea5-895c-98e349b93bac)
+
+## Retiming
+**Retiming** in VLSI is a design optimization technique used to improve the performance of a digital circuit by repositioning registers (flip-flops) to balance the timing paths without altering the circuit's functionality. It aims to reduce the critical path delay, minimize clock period, or optimize power consumption.
+
+**How it is done**:
+
+1. **Graph Representation**: The circuit is modeled as a directed graph, with nodes as combinational logic and edges representing signal paths.
+2. **Register Repositioning**: Registers are moved across combinational logic elements (e.g., gates) to shorten the longest path delay, ensuring the same input-output behavior.
+3. **Constraints Analysis**: Timing constraints (setup/hold times) and functional equivalence are preserved using algorithms like the retiming graph or Leiserson-Saxe retiming.
+4. **Optimization**: Iteratively adjust register positions to minimize clock period, reduce register count, or optimize power while maintaining correctness.
 
 
 
