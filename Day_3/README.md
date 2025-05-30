@@ -141,14 +141,7 @@ module opt_check4 (input a , input b , input c , output y);
  assign y = a?(b?(a & c ):c):(!c);
  endmodule
 ```
-The Verilog module `opt_check4` you provided implements a combinational logic circuit using nested ternary operators. Let’s analyze the module, explain its functionality, verify its behavior, and address any potential issues or improvements, especially in the context of your previous submissions (e.g., `opt_check2`).
 
-### Code Analysis
-```verilog
-module opt_check4 (input a, input b, input c, output y);
-    assign y = a ? (b ? (a & c) : c) : (!c);
-endmodule
-```
 
 - **Functionality**:
   - The module has three single-bit inputs: `a`, `b`, and `c`, and one single-bit output `y`.
@@ -174,6 +167,7 @@ endmodule
   - Output `y` is implicitly a single-bit `wire`.
   - The declarations are syntactically correct for Verilog 2001 or later.
 
+![opt4](https://github.com/user-attachments/assets/08d1e447-78c6-47c4-8c99-239645b38617)
 
 
 
