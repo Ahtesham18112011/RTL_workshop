@@ -294,7 +294,7 @@ GTKWave Example
 
 ![Screenshot_2025-05-30_10-45-13](https://github.com/user-attachments/assets/be8f6189-5cff-433b-8b00-d3637765c749)
 
-[!TIP]
+> [!TIP]
 > You can also compile and observe the waveforms of the asychronous reset/set synchronous reset/set verilog modules.
 
 ### Synthesis using Yosys
