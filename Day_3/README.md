@@ -1,7 +1,7 @@
 # Day 3: Combinational and Sequential optimization
 Welcome to the day 3 of this workshop! this day discusses about optimization of combinational and sequential circuits. And introduces us to to the techniques for optimization.
 
-## constant propagation: a technique for optimization
+## Constant propagation: a technique for optimization
 
 In VLSI design, constant propagation is a compiler optimization technique used to replace variables with their constant values during the synthesis process. This optimization can simplify the design, potentially reducing circuit complexity and improving performance by eliminating unnecessary logic. 
 
