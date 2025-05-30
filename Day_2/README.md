@@ -276,3 +276,25 @@ end
 - **Edge-Triggered**: The data (`d`) is captured and assigned to `q` on the rising edge of `clk` when `sync_reset` is low.
 
 
+### Iverilog compilation
+
+Compile the design and testbench:
+
+iverilog dff_asyncres.v tb_dff_asyncres.v
+
+Run the simulation:
+
+./a.out
+
+View the waveform:
+
+gtkwave tb_dff_asyncres.vcd
+
+GTKWave Example 
+
+![Screenshot_2025-05-30_10-45-13](https://github.com/user-attachments/assets/be8f6189-5cff-433b-8b00-d3637765c749)
+
+[!TIP]
+> You can also compile and observe the waveforms of the asychronous reset/set synchronous reset/set verilog modules.
+
+### Synthesis using Yosys
