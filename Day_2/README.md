@@ -97,7 +97,66 @@ Below is an example of the same verilog as of above code but flattened. This can
 
 ---
 
+## Synthesis with Flip-Flops
+A flip flop is an electronic circuit with two stable states that can be used to store binary data. The stored data can be changed by applying varying inputs. Flip-flops and latches are fundamental building blocks of digital electronics systems used in computers, communications, and many other types of systems. It is used to recover the glitch caused by delays of the gates in combinational circuits also.
 
+### Analysis of the verilog code
+Below is the verilog module for a asynchronous reset D Flip-Flop.
+```verilog
+module dff_asyncres ( input clk ,  input async_reset , input d , output reg q );
+always @ (posedge clk , posedge async_reset)
+begin
+	if(async_reset)
+		q <= 1'b0;
+	else	
+		q <= d;
+end
+endmodule
+```
+
+
+### Module Analysis
+- **Module Name**: `dff_asyncres`
+- **Inputs**:
+  - `clk`: Clock signal (triggers on positive edge).
+  - `async_reset`: Asynchronous reset signal (active high, triggers on positive edge).
+  - `d`: Data input to the flip-flop.
+- **Output**:
+  - `q`: Registered output (single bit, declared as `reg`).
+- **Functionality**:
+  - The flip-flop captures the value of `d` on the rising edge of `clk` and assigns it to `q`.
+  - If `async_reset` is high (on its rising edge), `q` is reset to `1'b0` (0) regardless of the clock.
+  - The reset is asynchronous, meaning it does not depend on the clock signal.
+
+### Code Explanation
+```verilog
+module dff_asyncres ( input clk, input async_reset, input d, output reg q );
+```
+- Declares the module with three inputs (`clk`, `async_reset`, `d`) and one output (`q`).
+
+```verilog
+always @ (posedge clk, posedge async_reset)
+```
+- The `always` block is sensitive to:
+  - The positive (rising) edge of `clk`.
+  - The positive (rising) edge of `async_reset`.
+
+```verilog
+begin
+    if (async_reset)
+        q <= 1'b0;
+    else
+        q <= d;
+end
+```
+- If `async_reset` is high (1), `q` is set to `1'b0` (0).
+- Otherwise, on the rising edge of `clk`, `q` takes the value of `d`.
+- The `<=` operator indicates non-blocking assignments, which are standard for sequential logic in Verilog.
+
+### Key Characteristics
+- **Asynchronous Reset**: The reset (`async_reset`) takes precedence over the clock and can change `q` immediately when `async_reset` goes high, without waiting for a clock edge.
+- **Edge-Triggered**: The data (`d`) is captured and assigned to `q` only on the rising edge of `clk` when `async_reset` is low.
+- **Single-Bit Storage**: The flip-flop stores a single bit, as `q` and `d` are single-bit signals.
 
 
 
