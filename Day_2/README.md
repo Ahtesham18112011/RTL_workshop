@@ -83,7 +83,8 @@ To open the sky130_fd_sc_hd__tt_025C_1v80.lib file:
 - Reporting can require additional configuration.
 
 **Example:**
-(Screenshot of hierarchical synthesis result)
+![Screenshot_2025-05-29_19-04-48](https://github.com/user-attachments/assets/91f0244a-2c41-42ea-be6f-468880c3af33)
+
 
 ---
 
@@ -102,7 +103,8 @@ To open the sky130_fd_sc_hd__tt_025C_1v80.lib file:
 - Can increase memory usage and netlist complexity.
 
 **Example:**
-(Screenshot of flattened synthesis result)
+
+![Screenshot_2025-05-29_19-20-47](https://github.com/user-attachments/assets/e1d94a5d-d3f7-41ee-8e69-ca0c05be81a3)
 
 > **Important:** Hierarchical synthesis maintains sub-modules in the design, while flattening produces a netlist from the ground up.
 
@@ -183,7 +185,8 @@ endmodule
    ```shell
    gtkwave tb_dff_asyncres.vcd
    ```
-   (Insert GTKWave screenshot if desired)
+![Screenshot_2025-05-30_10-45-13](https://github.com/user-attachments/assets/1176581e-fd6c-4b71-8af5-5d7d5f6dbcda)
+
 
 ### Synthesis with Yosys
 
@@ -215,7 +218,8 @@ endmodule
    ```shell
    show
    ```
-   (Insert gate-level netlist screenshot if desired)
+![Screenshot_2025-05-30_11-03-00](https://github.com/user-attachments/assets/fa8337df-e0ec-4b01-9b18-5910768e4421)
+
 
 ---
 
