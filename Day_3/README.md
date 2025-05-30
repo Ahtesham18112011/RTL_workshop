@@ -170,13 +170,81 @@ module opt_check4 (input a , input b , input c , output y);
 ![opt4](https://github.com/user-attachments/assets/08d1e447-78c6-47c4-8c99-239645b38617)
 
 
+### Lab 5
+
+Below is the verilog code for lab 5:-
+```verilog
+
+module dff_const1(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+
+```
 
 
+- **Functionality**:
+  - This is a **D flip-flop** with:
+    - **Inputs**:
+      - `clk`: Clock input (triggers on positive edge).
+      - `reset`: Asynchronous active-high reset input.
+    - **Output**:
+      - `q`: Registered output (single-bit, declared as `reg`).
+  - **Behavior**:
+    - When `reset = 1`, the output `q` is set to `0` (asynchronous reset, triggered on the positive edge of `reset`).
+    - When `reset = 0`, on the positive edge of `clk`, the output `q` is set to `1` (constant input `1'b1`).
+    - The flip-flop does not have a data input (`d`); it always loads `1` when not in reset, making it a specialized flip-flop with a fixed data value.
+
+- **Port Declarations**:
+  - `input clk`: Clock input (implicitly a `wire`).
+  - `input reset`: Reset input (implicitly a `wire`).
+  - `output reg q`: Output, explicitly declared as `reg` because it’s assigned in an `always` block (required for sequential logic).
 
 
+![dff_const1](https://github.com/user-attachments/assets/a42fac06-a092-4efc-be39-33b263caaaa1)
 
 
+### Lab 6
 
+Below is the verilog code for lab 6:-
+```verilog
+module dff_const2(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+```
+
+
+- **Functionality**:
+  - This is a **D flip-flop** with:
+    - **Inputs**:
+      - `clk`: Clock input (triggers on positive edge).
+      - `reset`: Asynchronous active-high reset input.
+    - **Output**:
+      - `q`: Registered output (single-bit, declared as `reg`).
+  - **Behavior**:
+    - When `reset = 1`, the output `q` is set to `1` (asynchronous reset, triggered on the positive edge of `reset`).
+    - When `reset = 0`, on the positive edge of `clk`, the output `q` is set to `1`.
+    - **Key Observation**: The output `q` is always set to `1`, whether in reset or during normal clocked operation. This means the flip-flop’s output is effectively constant (`q = 1`) after any event (reset or clock edge), making the flip-flop’s behavior trivial and potentially redundant.
+
+- **Port Declarations**:
+  - `input clk`: Clock input (implicitly a `wire`).
+  - `input reset`: Reset input (implicitly a `wire`).
+  - `output reg q`: Output, explicitly declared as `reg` for sequential logic.
+
+![dff_const2](https://github.com/user-attachments/assets/ae45f7db-0a7f-4256-b43b-01cc4a1588f7)
 
 
 
