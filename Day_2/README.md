@@ -217,8 +217,62 @@ end
 - **Edge-Triggered**: The data (`d`) is captured and assigned to `q` only on the rising edge of `clk` when `async_set` is low.
 - **Single-Bit Storage**: The flip-flop stores a single bit, as `q` and `d` are single-bit signals.
 
+### Analysis of the verilog code for synchronous reset D Flip-Flop
+Below is the verilog code for a synchronous reset Flip-Flop
+```verilog
+module dff_syncres ( input clk , input async_reset , input sync_reset , input d , output reg q );
+always @ (posedge clk )
+begin
+	if (sync_reset)
+		q <= 1'b0;
+	else	
+		q <= d;
+end
+endmodule
+```
+The provided Verilog code describes a D flip-flop (DFF) with a synchronous reset and an asynchronous reset input that appears to be unused. Let me analyze the module and explain its functionality, while addressing the presence of the `async_reset` input.
 
+### Module Analysis
+- **Module Name**: `dff_syncres`
+- **Inputs**:
+  - `clk`: Clock signal (triggers on positive edge).
+  - `async_reset`: Asynchronous reset signal (active high, but unused in the code).
+  - `sync_reset`: Synchronous reset signal (active high).
+  - `d`: Data input to the flip-flop.
+- **Output**:
+  - `q`: Registered output (single bit, declared as `reg`).
+- **Functionality**:
+  - The flip-flop captures the value of `d` on the rising edge of `clk` and assigns it to `q`, unless `sync_reset` is high.
+  - If `sync_reset` is high on the rising edge of `clk`, `q` is reset to `1'b0` (0).
+  - The `async_reset` input is declared but not used in the logic, which may indicate an oversight or incomplete implementation.
+- **Synchronous Reset**: The reset (`sync_reset`) only takes effect on the rising edge of `clk`, unlike an asynchronous reset.
 
+### Code Explanation
+```verilog
+module dff_syncres ( input clk, input async_reset, input sync_reset, input d, output reg q );
+```
+- Declares the module with four inputs (`clk`, `async_reset`, `sync_reset`, `d`) and one output (`q`).
 
+```verilog
+always @ (posedge clk)
+```
+- The `always` block is sensitive only to the positive (rising) edge of `clk`. Notably, `async_reset` is not included in the sensitivity list, meaning it has no effect on the logic.
+
+```verilog
+begin
+    if (sync_reset)
+        q <= 1'b0;
+    else
+        q <= d;
+end
+```
+- If `sync_reset` is high (1) on the rising edge of `clk`, `q` is set to `1'b0` (0).
+- Otherwise, on the rising edge of `clk`, `q` takes the value of `d`.
+- The `<=` operator indicates non-blocking assignments, standard for sequential logic in Verilog.
+
+### Key Characteristics
+- **Synchronous Reset**: The reset (`sync_reset`) only takes effect on the rising edge of `clk`, making it synchronous with the clock.
+- **Unused `async_reset`**: The `async_reset` input is declared but not used in the logic. This could be a mistake or intentional (e.g., for future expansion). If an asynchronous reset was intended, the sensitivity list and logic would need modification (see below).
+- **Edge-Triggered**: The data (`d`) is captured and assigned to `q` on the rising edge of `clk` when `sync_reset` is low.
 
 
