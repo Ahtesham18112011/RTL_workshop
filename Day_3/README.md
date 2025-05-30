@@ -15,8 +15,6 @@ Constant propagation involves analyzing the design description (e.g., a hardware
 * Performance Improvement: Simplified logic can result in faster execution and reduced propagation delays. 
 * Resource Optimization: Constant propagation can help optimize resource utilization, potentially reducing the number of logic gates or flip-flops required. 
 
-
-
-
-
+### Sequential constant propagation
+Sequential constant propagation in VLSI (Very Large Scale Integration) design is an optimization technique used during the compilation or synthesis of digital circuits to enhance the efficiency of sequential logic circuits. It involves analyzing a sequential circuit—a circuit whose output depends on both current inputs and past states stored in memory elements like flip-flops—to identify variables or signals that maintain constant values across all possible executions of the circuit. These constant values are then propagated through the circuit's logic to simplify the design, reduce power consumption, minimize area, and improve performance.
 
