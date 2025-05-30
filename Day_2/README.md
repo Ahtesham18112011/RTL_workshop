@@ -298,3 +298,44 @@ GTKWave Example
 > You can also compile and observe the waveforms of the asychronous reset/set synchronous reset/set verilog modules.
 
 ### Synthesis using Yosys
+1. **Start Yosys**
+    ```shell
+    yosys
+    ```
+
+2. **Read the liberty library**
+    ```shell
+    read_liberty -lib /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
+    ```
+
+3. **Read the Verilog code**
+    ```shell
+    read_verilog /home/vsduser/VLSI/sky130RTLDesignAndSynthesisWorkshop/verilog_files/dff_asyncres.v
+    ```
+
+4. **Synthesize the design**
+```shell
+    synth -top dff_asyncres
+```
+5. **For Flip-Flops**
+```shell
+dfflibmap -liberty /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+
+
+6. **Technology mapping**
+    ```shell
+    abc -liberty /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
+    ```
+
+7. **Visualize the gate-level netlist**
+    ```shell
+    show
+    ```
+![Screenshot_2025-05-30_11-03-00](https://github.com/user-attachments/assets/dfe3c231-a1f9-40c7-a2d8-fbbb2ca353ca)
+
+
+
+
+    
