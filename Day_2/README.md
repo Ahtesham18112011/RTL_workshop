@@ -74,6 +74,12 @@ Below is an example of the same verilog as of above code but flattened. This can
 
 ![Screenshot_2025-05-29_19-20-47](https://github.com/user-attachments/assets/3bb17602-62f1-4f6b-94ea-c279ac04754f)
 
+> [!IMPORTANT]
+> It is important to notice the difference between a hierarchical model and a flatten model. In hierarchical, the design was build with the sub-modules, in the flatten the design was build from breakdown of each sub-modules.
+
+
+
+
 
 ### **Key Differences**
 | Aspect                  | Hierarchical Synthesis                     | Flattened Synthesis                       |
