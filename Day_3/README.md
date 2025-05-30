@@ -76,6 +76,278 @@ opt_clean -purge
 
 ![Screenshot_2025-05-30_17-59-28](https://github.com/user-attachments/assets/4d224d8d-f6f5-4a37-9732-ab570b64e31e)
 
+### Lab 2
+
+Below is the verilog code for lab 2:-
+```verilog
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+
+```
+
+### Code Analysis
+```verilog
+module opt_check2 (input a , input b , output y);
+    assign y = a ? 1 : b;
+endmodule
+```
+- **Functionality**: This module acts as a multiplexer. The output `y` is assigned:
+  - `1` if the input `a` is true (logic 1).
+  - The value of input `b` if `a` is false (logic 0).
+- **Inputs and Outputs**:
+  - `a`: Control input (select signal).
+  - `b`: Data input.
+  - `y`: Output.
+
+Result after simulation:-
+
+![op2](https://github.com/user-attachments/assets/59545745-8a8b-4afd-b4d5-0a3ad1d5b80e)
+
+
+### Lab 3
+
+Below is the verilog code for lab 3:-
+```verilog
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+
+```
+
+- **Functionality**: 
+  - The module acts as a 2-to-1 multiplexer.
+  - Input `a` is the select signal:
+    - If `a = 1`, output `y` is assigned `1`.
+    - If `a = 0`, output `y` is assigned the value of input `b`.
+  - This can be thought of as: `y = a ? 1 : b`, which is equivalent to `y = a | b` in some contexts, but specifically outputs `1` when `a` is true.
+
+- **Port Declarations**:
+  - `input a`: Select input (single-bit, implicitly a `wire`).
+  - `input b`: Data input (single-bit, implicitly a `wire`).
+  - `output y`: Output (single-bit, implicitly a `wire`).
+  - The declarations are syntactically correct for Verilog 2001 or later.
+
+Result after synthesis:
+
+![opt3](https://github.com/user-attachments/assets/157b16d3-cecd-441a-aacf-bae296910886)
+
+
+### Lab 4
+
+Below is the verilog code for lab 4:-
+```verilog
+module opt_check4 (input a , input b , input c , output y);
+ assign y = a?(b?(a & c ):c):(!c);
+ endmodule
+```
+The Verilog module `opt_check4` you provided implements a combinational logic circuit using nested ternary operators. Let’s analyze the module, explain its functionality, verify its behavior, and address any potential issues or improvements, especially in the context of your previous submissions (e.g., `opt_check2`).
+
+### Code Analysis
+```verilog
+module opt_check4 (input a, input b, input c, output y);
+    assign y = a ? (b ? (a & c) : c) : (!c);
+endmodule
+```
+
+- **Functionality**:
+  - The module has three single-bit inputs: `a`, `b`, and `c`, and one single-bit output `y`.
+  - The output `y` is determined by a nested ternary operator:
+    - If `a == 1`, then:
+      - If `b == 1`, `y = a & c` (since `a == 1`, this simplifies to `y = c`).
+      - If `b == 0`, `y = c`.
+    - If `a == 0`, `y = !c` (logical NOT of `c`).
+  - Simplifying the logic:
+    - When `a == 1`, `y = c` (since both `b == 1` and `b == 0` yield `y = c`).
+    - When `a == 0`, `y = !c`.
+    - Thus, the logic can be expressed as:
+      \[
+      y = (a \land c) \lor (\neg a \land \neg c)
+      \]
+      or equivalently, as a multiplexer-like function:
+      \[
+      y = a ? c : !c
+      \]
+
+- **Port Declarations**:
+  - Inputs `a`, `b`, and `c` are implicitly single-bit `wire` types.
+  - Output `y` is implicitly a single-bit `wire`.
+  - The declarations are syntactically correct for Verilog 2001 or later.
+
+- **Context from Previous Submission**:
+  - Your previous submissions involved `opt_check2`, a 2-to-1 multiplexer with `y = a ? 1 : b`. This new module, `opt_check4`, is more complex due to three inputs and nested ternary operators, but it also resembles a multiplexer where `a` selects between `c` and `!c`.
+
+### Truth Table
+To understand the behavior, let’s derive the truth table for `y = a ? c : !c` (noting that `b` does not affect the output due to the simplification):
+
+| a | b | c | y = a ? c : !c |
+|---|---|---|----------------|
+| 0 | 0 | 0 |      1         |
+| 0 | 0 | 1 |      0         |
+| 0 | 1 | 0 |      1         |
+| 0 | 1 | 1 |      0         |
+| 1 | 0 | 0 |      0         |
+| 1 | 0 | 1 |      1         |
+| 1 | 1 | 0 |      0         |
+| 1 | 1 | 1 |      1         |
+
+- **Observation**: The input `b` has no effect on `y`, as the expression simplifies to `y = a ? c : !c`. This suggests the module could be simplified by removing `b`.
+
+### Verification Testbench
+Here’s a testbench to simulate all input combinations and verify the behavior:
+```verilog
+module tb_opt_check4;
+    reg a, b, c;
+    wire y;
+
+    // Instantiate the module
+    opt_check4 uut (.a(a), .b(b), .c(c), .y(y));
+
+    initial begin
+        $monitor("Time=%0t: a=%b, b=%b, c=%b, y=%b", $time, a, b, c, y);
+        // Test all combinations
+        a = 0; b = 0; c = 0; #10;
+        a = 0; b = 0; c = 1; #10;
+        a = 0; b = 1; c = 0; #10;
+        a = 0; b = 1; c = 1; #10;
+        a = 1; b = 0; c = 0; #10;
+        a = 1; b = 0; c = 1; #10;
+        a = 1; b = 1; c = 0; #10;
+        a = 1; b = 1; c = 1; #10;
+        $finish;
+    end
+endmodule
+```
+
+**Expected Output**:
+```
+Time=0: a=0, b=0, c=0, y=1
+Time=10: a=0, b=0, c=1, y=0
+Time=20: a=0, b=1, c=0, y=1
+Time=30: a=0, b=1, c=1, y=0
+Time=40: a=1, b=0, c=0, y=0
+Time=50: a=1, b=0, c=1, y=1
+Time=60: a=1, b=1, c=0, y=0
+Time=70: a=1, b=1, c=1, y=1
+```
+
+### Potential Issues and Improvements
+1. **Redundant Input `b`**:
+   - The input `b` does not affect the output `y` because both branches of the inner ternary operator (`b ? (a & c) : c`) yield `c` when `a == 1`. This makes `b` unnecessary.
+   - **Simplification**:
+     ```verilog
+     module opt_check4 (
+         input wire a,
+         input wire c,
+         output wire y
+     );
+         assign y = a ? c : !c;
+     endmodule
+     ```
+     This simplified version removes `b` and achieves the same functionality.
+
+2. **Explicit Port Types**:
+   - For clarity, explicitly declare ports as `wire`:
+     ```verilog
+     module opt_check4 (
+         input wire a,
+         input wire b,
+         input wire c,
+         output wire y
+     );
+         assign y = a ? (b ? (a & c) : c) : (!c);
+     endmodule
+     ```
+
+3. **Multi-Bit Support**:
+   - If you intended multi-bit inputs/outputs, you’d need to adjust the logic. For example:
+     ```verilog
+     module opt_check4 #(
+         parameter WIDTH = 1
+     ) (
+         input [WIDTH-1:0] a,
+         input [WIDTH-1:0] b,
+         input [WIDTH-1:0] c,
+         output [WIDTH-1:0] y
+     );
+         assign y = a ? (b ? (a & c) : c) : (~c);
+     endmodule
+     ```
+     Here, `~c` is the bitwise NOT of `c`, and the operations are performed bit-wise.
+
+4. **Synthesis Considerations**:
+   - The nested ternary operator synthesizes to a multiplexer-like circuit where `a` selects between `c` and `!c`. This is efficient, typically using one or two LUTs in an FPGA.
+   - The redundant `b` input may be optimized out by synthesis tools, but explicitly removing it improves code clarity and avoids warnings.
+
+### Truth Table Chart
+Since you asked about a chart in the context of your previous submission, here’s a bar chart visualizing the truth table for `y` based on inputs `a` and `c` (ignoring `b` since it has no effect). The chart shows the output `y` for each combination of `a` and `c`.
+
+```chartjs
+{
+  "type": "bar",
+  "data": {
+    "labels": ["a=0,c=0", "a=0,c=1", "a=1,c=0", "a=1,c=1"],
+    "datasets": [{
+      "label": "Output y",
+      "data": [1, 0, 0, 1],
+      "backgroundColor": ["#36A2EB", "#36A2EB", "#FF6384", "#FF6384"],
+      "borderColor": ["#2E86C1", "#2E86C1", "#E74C3C", "#E74C3C"],
+      "borderWidth": 1
+    }]
+  },
+  "options": {
+    "scales": {
+      "y": {
+        "beginAtZero": true,
+        "max": 1,
+        "ticks": {
+          "stepSize": 1
+        }
+      }
+    },
+    "plugins": {
+      "legend": {
+        "display": true
+      }
+    }
+  }
+}
+```
+
+This chart displays `y` (0 or 1) for each combination of `a` and `c`, with distinct colors for clarity on both light and dark themes.
+
+### Alternative Implementation
+For clarity or specific synthesis goals, you could rewrite the module using basic gates:
+```verilog
+module opt_check4 (
+    input wire a,
+    input wire b,
+    input wire c,
+    output wire y
+);
+    wire not_c, sel_a, sel_not_a;
+    not (not_c, c);
+    and (sel_a, a, c);
+    and (sel_not_a, ~a, not_c);
+    or (y, sel_a, sel_not_a);
+endmodule
+```
+
+This gate-level implementation is equivalent but more verbose, and it explicitly shows the logic `y = (a & c) | (!a & !c)`.
+
+### Questions for Clarification
+- Was the inclusion of `b` intentional, or is it meant to be unused? If unused, I recommend simplifying the module as shown above.
+- Do you need multi-bit support or specific synthesis constraints?
+- Would you like further analysis, such as timing analysis, power estimation, or additional test cases?
+- Are you comparing `opt_check4` with `opt_check2` from your previous submission? If so, I can provide a detailed comparison (e.g., `opt_check2` is a simpler mux with `y = a ? 1 : b`, while `opt_check4` is `y = a ? c : !c`).
+
+Please let me know your specific needs or if you want to focus on simulation, synthesis, or visualization!
+
+
+
+
+
+
 
 
 
