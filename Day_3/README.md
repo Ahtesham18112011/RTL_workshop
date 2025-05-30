@@ -206,3 +206,15 @@ endmodule
 ![Lab 6 Output](https://github.com/user-attachments/assets/ae45f7db-0a7f-4256-b43b-01cc4a1588f7)
 
 ---
+
+## Summary
+- **Focus:** Optimization techniques for combinational and sequential circuits in digital design, with practical Verilog labs.
+  
+- **Topics Covered:**
+  1. **Constant Propagation:** Replacing variables with constant values to simplify logic and improve circuit efficiency.
+  2. **State Optimization:** Reducing states and optimizing encoding in finite state machines to use less logic and power.
+  3. **Cloning:** Duplicating logic cells/modules to improve timing and balance load.
+  4. **Retiming:** Repositioning registers in a circuit to enhance performance without altering its function.
+
+- **Labs:** Six practical Verilog labs illustrate these concepts, including examples of combinational logic optimizations and D flip-flop behaviors, each with code snippets and output images.
+
