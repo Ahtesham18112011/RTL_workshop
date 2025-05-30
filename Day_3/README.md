@@ -6,6 +6,7 @@ Welcome to the day 3 of this workshop! this day discusses about optimization of 
 In VLSI design, constant propagation is a compiler optimization technique used to replace variables with their constant values during the synthesis process. This optimization can simplify the design, potentially reducing circuit complexity and improving performance by eliminating unnecessary logic. 
 
 **How it works**:
+
 Constant propagation involves analyzing the design description (e.g., a hardware description language like Verilog or VHDL) and identifying variables that have constant values. These variables are then replaced with their actual constant values in subsequent operations. 
 
 **Benefits**:
