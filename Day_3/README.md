@@ -53,9 +53,28 @@ In VLSI, cloning involves duplicating a logic cell or module in a circuit design
 4. **Optimization**: Iteratively adjust register positions to minimize clock period, reduce register count, or optimize power while maintaining correctness.
 
 
+## Labs on optimization
+### Lab 1 
 
+Below is the verilog code foe lab 1:-
+```verilog
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
+### Explanation:
+- **Module Declaration**: The module `opt_check` has three ports: `a` (input), `b` (input), and `y` (output). These are correctly declared.
+- **Ternary Operator**: The statement `assign y = a ? b : 0;` means:
+- If `a` is true (1), then `y` is assigned the value of `b`.
+- If `a` is false (0), then `y` is assigned 0.
 
+Follow the steps given in [Day 1](https://github.com/Ahtesham18112011/RTL_workshop/tree/main/Day_1#6-synthesis-lab-with-yosys) but you need to add a line between  `abc -liberty` and `synth -top`
+that is:-
+```shell
+opt_clean -purge
+```
 
+![Screenshot_2025-05-30_17-59-28](https://github.com/user-attachments/assets/4d224d8d-f6f5-4a37-9732-ab570b64e31e)
 
 
 
