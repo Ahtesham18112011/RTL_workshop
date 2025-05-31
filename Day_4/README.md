@@ -77,18 +77,8 @@ This mismatch can manifest as:
 | Sequential, immediate execution                   | Concurrent, scheduled at end of time step         |
 | Updates happen instantly in code order            | Updates applied after time step                   |
 | For combinational logic, temporary variables       | For sequential logic, registers/flip-flops        |
-| Behaves like procedural code (e.g., C)            | Mimics parallel hardware updates                  |
 | Infers combinational logic (e.g., gates)          | Infers sequential logic (e.g., flip-flops)        |
 | Example: `always @(*) y = a & b;`                | Example: `always @(posedge clk) q <= d;`         |
-| Higher race condition risk in sequential logic    | Lower race condition risk, designed for concurrency|
-| Use in `always @(*)` for combinational logic      | Use in `always @(posedge clk)` for registers      |
-
-
-
-
-
-
-
 
 
 
