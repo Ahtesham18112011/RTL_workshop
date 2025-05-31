@@ -218,6 +218,14 @@ This  lab is the  synthesis of the above lab.
 ![lab7](https://github.com/user-attachments/assets/833bfacc-3b76-40fa-814c-47f0d783a6e0)
 
 
+## Summary
+
+- **Topic:** The document covers Gate-Level Simulation (GLS), blocking vs. non-blocking statements in Verilog, and the issue of synthesis-simulation mismatch in digital design.
+- **GLS:** Explains GLS as a crucial verification step after synthesis, verifying functional correctness and timing of a gate-level netlist.
+- **Synthesis-Simulation Mismatch:** Discusses reasons why simulation results can differ before and after synthesis, often due to improper RTL coding practices.
+- **Blocking vs. Non-blocking:** Clearly explains the difference between `=` (blocking, for combinational logic) and `<=` (non-blocking, for sequential logic) assignments in Verilog.
+- **Labs:** Includes several labs with example Verilog code, synthesis steps, and explanations of common pitfalls such as sensitivity list mistakes and wrong assignment types for combinational logic.
+
 
 
 
