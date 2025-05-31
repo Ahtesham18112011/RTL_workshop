@@ -196,7 +196,9 @@ The `blocking_caveat` module you provided is a Verilog module that implements co
 
 
 ### Lab 7
+This  lab is the  synthesis of the above lab.
 
+![lab7](https://github.com/user-attachments/assets/833bfacc-3b76-40fa-814c-47f0d783a6e0)
 
 
 
