@@ -81,6 +81,126 @@ This mismatch can manifest as:
 | Example: `always @(*) y = a & b;`                | Example: `always @(posedge clk) q <= d;`         |
 
 
+## Labs
+### Lab 1
+The verilog code for the lab 1 is given below:-
+```verilog
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+	endmodule
+```
+
+
+- **Module Name**: `ternary_operator_mux`
+- **Inputs**:
+  - `i0`: First input
+  - `i1`: Second input
+  - `sel`: Select line
+- **Output**: `y`
+- **Functionality**: The `assign` statement uses a ternary operator (`sel ? i1 : i0`) to select between `i1` and `i0` based on `sel`:
+  - If `sel = 1`, `y = i1`
+  - If `sel = 0`, `y = i0`
+
+![lab1](https://github.com/user-attachments/assets/3f5eb05a-1861-4bb8-940c-6ff9f2af87fb)
+
+### Lab 2
+This lab do the synthesis of the  above lab's verilog code using Yosys. Follow the same steps to synthesisze
+![lab2](https://github.com/user-attachments/assets/7a0cdc7c-cbbd-4943-bd3d-130a0d66b9b1)
+
+
+### Lab 3
+This lab is the GLS of the above verilog module the only change neede is using this command :-
+```shell
+iverilog /home/vsduser/VLSI/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/primitives.v /home/vsduser/VLSI/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+```
+![lab3](https://github.com/user-attachments/assets/9acf45b3-2e42-4ac1-88ae-b4a494cc8d87)
+
+
+### Lab 4
+The verilog code for the lab 4 is given below:-
+```verilog
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+always @ (sel)
+begin
+	if(sel)
+		y <= i1;
+	else 
+		y <= i0;
+end
+endmodule
+```
+
+### Module Breakdown
+- **Module Name**: `bad_mux`
+- **Inputs**:
+  - `i0`: First input
+  - `i1`: Second input
+  - `sel`: Select line
+- **Output**: `y` (declared as `reg` due to the procedural assignment in the `always` block)
+- **Functionality**: 
+  - The `always @ (sel)` block triggers whenever `sel` changes.
+  - If `sel = 1`, `y` is assigned `i1`.
+  - If `sel = 0`, `y` is assigned `i0`.
+
+### Issues with the Code
+1. **Sensitivity List Issue**:
+   - The `always` block only includes `sel` in the sensitivity list (`always @ (sel)`). In a multiplexer, the output `y` depends not only on `sel` but also on `i0` and `i1`. If `i0` or `i1` changes while `sel` remains constant, the output `y` won’t update, which is incorrect for a combinational circuit like a MUX.
+   - **Fix**: Use `always @ (*)` (or `always_comb` in SystemVerilog) to include all inputs (`i0`, `i1`, `sel`) in the sensitivity list automatically.
+
+2. **Non-Blocking Assignment in Combinational Logic**:
+   - The module uses non-blocking assignments (`<=`) in the `always` block. Non-blocking assignments are typically used for sequential logic (e.g., flip-flops), not combinational logic like a MUX.
+   - **Fix**: Use blocking assignments (`=`) for combinational logic to ensure immediate updates, e.g., `y = i1` and `y = i0`.
+
+
+![lab4](https://github.com/user-attachments/assets/4c2ede06-0605-4ff0-99cb-fc89844b89e4)
+
+
+### Lab 5
+This lab is the synthesis of the above `bad_mux.v` module.
+
+![lab5](https://github.com/user-attachments/assets/2e698404-27b5-4c4a-a811-41b5fc13db77)
+
+
+### Lab 6
+
+The verilog code for the lab 4 is given below:-
+```verilog
+module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+begin
+	d = x & c;
+	x = a | b;
+end
+endmodule
+```
+The `blocking_caveat` module you provided is a Verilog module that implements combinational logic using an `always` block. However, the use of **blocking assignments** (`=`) in the `always` block introduces a potential issue, often referred to as a "blocking assignment caveat" in Verilog. Let’s analyze the module, identify the issue, and suggest improvements.
+
+### Module Breakdown
+- **Module Name**: `blocking_caveat`
+- **Inputs**:
+  - `a`: First input
+  - `b`: Second input
+  - `c`: Third input
+- **Output**:
+  - `d`: Output (declared as `reg` due to the procedural assignment)
+- **Internal Signal**:
+  - `x`: An internal `reg` used as an intermediate signal
+- **Functionality**:
+  - The `always @ (*)` block is combinational (sensitive to all inputs: `a`, `b`, `c`).
+  - Inside the block:
+    - `d = x & c`: Assigns the logical AND of `x` and `c` to `d`.
+    - `x = a | b`: Assigns the logical OR of `a` and `b` to `x`.
+
+![lab6](https://github.com/user-attachments/assets/42cac594-0008-4c7b-b415-43e6565b6081)
+
+
+### Lab 7
+
+
+
+
+
 
 
 
