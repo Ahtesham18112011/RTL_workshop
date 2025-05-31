@@ -1,4 +1,4 @@
-# Day 4: GLS blocking vs non-blocking and Synthesis Simulation mismatch
+# Day 4: GLS, blocking vs non-blocking and Synthesis Simulation mismatch
 Welcome to the day 4 of this workshop! This interesting day clears topics about GLS(Gate-Level Simulation), blocking and non-blocking statements in verilog and some Synthesis Simulation mismatch, which should be prevented to make a perfect netlist.
 
 ---
