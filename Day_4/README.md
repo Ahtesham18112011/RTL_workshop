@@ -45,3 +45,63 @@ This mismatch can manifest as:
    - **Non-synthesizable constructs**: Some RTL code may simulate correctly but include constructs (e.g., delays, initial blocks, or certain procedural assignments) that are not synthesizable or are interpreted differently by synthesis tools.
    - **Ambiguous or incomplete specifications**: Unclear coding, such as missing `else` clauses in case statements or improper sensitivity lists, can lead to different interpretations by simulators and synthesis tools.
    - Example: In Verilog, a combinational block with an incomplete sensitivity list may simulate correctly but synthesize into unintended sequential logic.
+
+
+
+
+## Blocking vs Non-blocking statements in verilog 
+
+### **Blocking Statements**
+- **Syntax**: Uses the `=` operator.
+- **Behavior**: 
+  - Assignments are executed **sequentially** in the order they appear in the code.
+  - The statement completes immediately, and the updated value is available for subsequent statements within the same time step.
+  - They behave like typical assignments in procedural programming languages (e.g., C).
+- **Use Case**: 
+  - Typically used in **combinational logic** (e.g., `always @(*)` blocks) where the order of operations matters.
+  - Suitable for temporary variables or intermediate calculations within a block.
+
+### **Non-Blocking Statements**
+- **Syntax**: Uses the `<=` operator.
+- **Behavior**: 
+  - Assignments are **scheduled** and executed **concurrently** at the end of the current time step (after all blocking assignments and other events in the same time step are processed).
+  - The right-hand side of the assignment is evaluated immediately, but the left-hand side (the variable being assigned) is updated only after the scheduler processes all non-blocking assignments.
+  - This mimics the parallel nature of hardware, where flip-flops update simultaneously on a clock edge.
+- **Use Case**: 
+  - Primarily used in **sequential logic** (e.g., `always @(posedge clk)` blocks) to model registers or flip-flops.
+  - Ensures correct simulation of concurrent hardware updates.
+
+| **Blocking (`=`)**                                 | **Non-Blocking (`<=`)**                            |
+|---------------------------------------------------|---------------------------------------------------|
+| Uses `=` operator                                 | Uses `<=` operator                                |
+| Sequential, immediate execution                   | Concurrent, scheduled at end of time step         |
+| Updates happen instantly in code order            | Updates applied after time step                   |
+| For combinational logic, temporary variables       | For sequential logic, registers/flip-flops        |
+| Behaves like procedural code (e.g., C)            | Mimics parallel hardware updates                  |
+| Infers combinational logic (e.g., gates)          | Infers sequential logic (e.g., flip-flops)        |
+| Example: `always @(*) y = a & b;`                | Example: `always @(posedge clk) q <= d;`         |
+| Higher race condition risk in sequential logic    | Lower race condition risk, designed for concurrency|
+| Use in `always @(*)` for combinational logic      | Use in `always @(posedge clk)` for registers      |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
