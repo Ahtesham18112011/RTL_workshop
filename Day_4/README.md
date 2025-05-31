@@ -1,6 +1,23 @@
 # Day 4: GLS blocking vs non-blocking and Synthesis Simulation mismatch
 Welcome to the day 4 of this workshop! This interesting day clears topics about GLS(Gate-Level Simulation), blocking and non-blocking statements in verilog and some Synthesis Simulation mismatch, which should be prevented to make a perfect netlist.
 
+
+## Contents
+
+- [What is GLS?](#what-is-gls)
+- [What is Synthesis-Simulation Mismatch?](#what-is-synthesis-simulation-mismatch)
+- [Blocking vs Non-blocking statements in verilog](#blocking-vs-non-blocking-statements-in-verilog)
+  - [Blocking Statements](#blocking-statements)
+  - [Non-Blocking Statements](#non-blocking-statements)
+- [Labs](#labs)
+  - [Lab 1](#lab-1)
+  - [Lab 2](#lab-2)
+  - [Lab 3](#lab-3)
+  - [Lab 4](#lab-4)
+  - [Lab 5](#lab-5)
+  - [Lab 6](#lab-6)
+  - [Lab 7](#lab-7)
+
 ## What is GLS?
 **GLS** stands for **Gate-Level Simulation**. It is a critical verification step in the VLSI design flow where the gate-level netlist of a digital circuit is simulated to validate its functionality, timing, and power characteristics.
 
