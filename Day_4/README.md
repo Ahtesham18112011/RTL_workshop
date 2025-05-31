@@ -156,7 +156,7 @@ endmodule
 
 
 ### Lab 5
-This lab is the synthesis of the above `bad_mux.v` module.
+This lab is the GLS of the above `bad_mux.v` module.
 
 ![lab5](https://github.com/user-attachments/assets/2e698404-27b5-4c4a-a811-41b5fc13db77)
 
