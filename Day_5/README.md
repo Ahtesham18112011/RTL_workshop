@@ -1,6 +1,6 @@
-## Day 5: Optimization in syntheis
+# Day 5: Optimization in syntheis
 Welcome to the Da 5 of this workshop! This day deals with if-else statements in Verilog and then discusses about for loops and generate blocks in verilog HDL.
-# What are if-else statements in verilog?
+## What are if-else statements in verilog?
 In Verilog, **if-else statements** are used for conditional execution in behavioral modeling, typically within procedural blocks like `always`, `initial`, or in tasks and functions. They allow the code to execute different blocks of code based on whether a condition evaluates to true or false. Verilog’s if-else syntax is similar to that of other programming languages like C, but it’s tailored for hardware description with specific considerations for synthesis.
 
 ### Syntax
