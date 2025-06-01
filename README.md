@@ -9,7 +9,7 @@
 
 This project is licensed under the Attribution 4.0 International License - see the [LICENSE](./LICENSE) file for details.
 
-## Acknowledgments
+## Acknowledgments 👑
 
 *  [Shon Taware](https://www.linkedin.com/in/shon-taware/)
 *  [Kunal Ghosh](https://www.linkedin.com/in/kunal-ghosh-vlsisystemdesign-com-28084836/)
