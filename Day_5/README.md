@@ -266,6 +266,12 @@ generate
 endgenerate
 
 ```
+## What is `rca` (Ripple Carry Adder)?
+
+RCA is a simple adder in digital electronics which adds binary bits, which is made up of Full Adders, Addition of `n` bits requires `n` Full Adders, each output carry is connected to the next Full Adder's carry input. Below is the diagram of a Ripple carry Adder:-
+
+![image](https://github.com/user-attachments/assets/f1ec27d4-b770-4d7a-a418-6435fc81f538)
+
 ## Labs on Loop and generate blocks
 ### Lab 9
 The verilog code  for lab 8 is given below
