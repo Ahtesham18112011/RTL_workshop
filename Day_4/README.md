@@ -226,6 +226,7 @@ Synthesize the corrected version of the module and observe the results.
 
 ---
 
-> **Tip:** Always simulate both your RTL and gate-level netlist, and review warnings from synthesis and simulation tools!
+> [!TIP]
+>  Always simulate both your RTL and gate-level netlist, and review warnings from synthesis and simulation tools!
 
 ---
