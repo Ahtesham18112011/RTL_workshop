@@ -212,3 +212,202 @@ end
 - **Synthesis**: For loops are synthesizable if they have a fixed number of iterations (statically determinable at compile time) and describe hardware behavior (e.g., unrolled logic for combinational or sequential circuits). Loops with dynamic bounds or non-hardware-like behavior (e.g., delays) may not synthesize.
 - **Loop Counter**: Typically uses an `integer` or `reg` variable as the counter. The counter must be declared before the loop unless it’s a genvar in generate blocks (see below for generate context).
 
+### Example
+### Verilog Code for 4-to-1 MUX Using For Loop
+
+```verilog
+module mux_4to1_for_loop (
+    input wire [3:0] data, // 4 input data lines (d0, d1, d2, d3)
+    input wire [1:0] sel,  // 2-bit select signal
+    output reg y           // Output
+);
+    integer i;
+    always @(data, sel) begin
+        y = 1'b0; // Default output
+        for (i = 0; i < 4; i = i + 1) begin
+            if (i == sel) begin
+                y = data[i];
+            end
+        end
+    end
+endmodule
+```
+
+### Explanation
+- **Inputs**:
+  - `data`: A 4-bit vector (`data[0]` to `data[3]`) representing the four input lines (d0, d1, d2, d3).
+  - `sel`: A 2-bit select signal (`sel[1:0]`) that chooses which input to pass to the output (00, 01, 10, or 11).
+- **Output**:
+  - `y`: A single-bit output (declared as `reg` because it’s assigned in an `always` block).
+- **For Loop Logic**:
+  - The `always @(data, sel)` block ensures the logic updates whenever `data` or `sel` changes, making it combinational.
+  - The loop iterates over `i` from 0 to 3 (covering all four inputs).
+  - The `if (i == sel)` condition checks if the loop index matches the select signal. If true, `y` is assigned `data[i]`.
+  - The default value `y = 1'b0` ensures `y` has a defined value before the loop, though it will be overwritten when `i == sel`.
+- **Functionality**:
+  - When `sel = 00` (0), `y = data[0]`.
+  - When `sel = 01` (1), `y = data[1]`.
+  - When `sel = 10` (2), `y = data[2]`.
+  - When `sel = 11` (3), `y = data[3]`.
+- **Synthesis**:
+  - The loop is synthesizable because it has a fixed number of iterations (4), and the synthesis tool unrolls it into equivalent combinational logic (effectively a multiplexer).
+  - The loop is equivalent to a case statement or conditional logic but uses iteration to check the select condition.
+
+## Generate Block in verilog
+A **generate block** in Verilog is used to dynamically create hardware structures, like module instances or logic, during compilation. Enclosed in `generate` and `endgenerate`, it supports `for` loops, `if`, or `case` statements to create repetitive or conditional code based on parameters. A `genvar` variable controls loops, and the construct is evaluated at elaboration, not simulation, enabling scalable and reusable designs.
+
+### Example
+```verilog
+genvar i;
+generate
+  for (i = 0; i < 4; i = i + 1) begin : gen_loop
+    and_gate and_inst (.a(in[i]), .b(in[i+1]), .y(out[i]));
+  end
+endgenerate
+
+```
+## Labs on Loop and generate blocks
+### Lab 9
+The verilog code  for lab 8 is given below
+```verilog
+module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+wire [3:0] i_int;
+assign i_int = {i3,i2,i1,i0};
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 4; k=k+1) begin
+	if(k == sel)
+		y = i_int[k];
+end
+end
+endmodule
+```
+The Verilog module mux_generate is a 4-to-1 multiplexer. It selects one of four single-bit inputs (i0, i1, i2, i3) based on a 2-bit select signal (sel) and assigns it to the output y. The inputs are concatenated into a 4-bit wire i_int = {i3, i2, i1, i0}. An always block with a for loop checks if the loop index k matches sel and assigns i_int[k] to y.
+
+![mux_generate](https://github.com/user-attachments/assets/80789638-c349-44a9-92f4-7597d5925c63)
+
+### Lab 10
+The verilog code for lab 10 is given below:-
+```verilog
+module demux_case (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+	case(sel)
+		3'b000 : y_int[0] = i;
+		3'b001 : y_int[1] = i;
+		3'b010 : y_int[2] = i;
+		3'b011 : y_int[3] = i;
+		3'b100 : y_int[4] = i;
+		3'b101 : y_int[5] = i;
+		3'b110 : y_int[6] = i;
+		3'b111 : y_int[7] = i;
+	endcase
+
+end
+endmodule
+
+```
+ 
+
+- A `reg [7:0] y_int` is used to store intermediate values.
+- The `always @(*)` block resets `y_int` to `8'b0` and uses a `case` statement to set one bit of `y_int` to the value of `i` based on `sel` (e.g., `sel = 3'b000` sets `y_int[0] = i`).
+- The outputs `{o7, o6, o5, o4, o3, o2, o1, o0}` are assigned from `y_int`.
+- Only the output selected by `sel` gets the value of `i`; all others are `0`.
+
+![demux-case](https://github.com/user-attachments/assets/1836a255-e260-47de-9a8e-45899b19fc03)
+
+
+### Lab 11
+The verilog code for lab 11 is given below:-
+
+```verilog
+
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+for(k = 0; k < 8; k++) begin
+	if(k == sel)
+		y_int[k] = i;
+end
+end
+endmodule
+```
+The Verilog module `demux_generate` is an 8-to-1 demultiplexer. It takes a single-bit input `i` and a 3-bit select signal `sel` to route `i` to one of eight single-bit outputs (`o0` to `o7`).
+
+- A `reg [7:0] y_int` holds intermediate values.
+- The `always @(*)` block resets `y_int` to `8'b0` and uses a `for` loop to set `y_int[k] = i` when `k` matches `sel`.
+- The outputs `{o7, o6, o5, o4, o3, o2, o1, o0}` are assigned from `y_int`.
+- The output selected by `sel` gets the value of `i`; others are `0`.
+
+![demux-generate](https://github.com/user-attachments/assets/a5a2c004-a16f-44cd-8d80-c23f1c932e6c)
+
+
+### Lab 12
+The verilog codes for lab 12 are given below:-
+```verilog
+module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+wire [7:0] int_sum;
+wire [7:0]int_co;
+
+genvar i;
+generate
+	for (i = 1 ; i < 8; i=i+1) begin
+		fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+	end
+
+endgenerate
+fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+assign sum[7:0] = int_sum;
+assign sum[8] = int_co[7];
+endmodule
+
+```
+The Verilog module `rca` is an 8-bit ripple-carry adder. It takes two 8-bit inputs (`num1`, `num2`) and produces a 9-bit output (`sum`).
+
+- A `generate` block with a `for` loop instantiates seven full adders (`fa`) for bits 1 to 7, connecting `num1[i]`, `num2[i]`, and the carry-out from the previous stage (`int_co[i-1]`) to produce `int_sum[i]` and `int_co[i]`.
+- A separate full adder (`u_fa_0`) handles bit 0 with a carry-in of `0`.
+- The 8-bit `int_sum` is assigned to `sum[7:0]`, and the final carry-out (`int_co[7]`) is assigned to `sum[8]`.
+- Adds two 8-bit numbers, producing an 8-bit sum and a carry-out bit.
+
+```verilog
+module fa (input a , input b , input c, output co , output sum);
+	assign {co,sum}  = a + b + c ;
+endmodule
+```
+This is a simple module for a Full-Adder which sums 3 numbers.
+
+![rca_org](https://github.com/user-attachments/assets/1d8876f9-e303-4a73-945e-97756a37bb73)
+
+---
+> [!IMPORTANT]
+> Steps to perform the above labs are already shown in [Day 1](https://github.com/Ahtesham18112011/RTL_workshop/tree/main/Day_1).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
