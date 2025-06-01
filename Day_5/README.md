@@ -71,8 +71,56 @@ end
 endmodule
 ```
 
+## Labs for if-else/case statements
+### Lab 1
+The verilog code for lab 1 is provide below:-
+```verilog
+module incomp_if (input i0 , input i1 , input i2 , output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+end
+endmodule
+```
+
+![in_comp_if](https://github.com/user-attachments/assets/91d1cc1d-bb3a-4ea8-a272-363414777868)
 
 
+### Lab 2
+The lab 2 is the synthesis of the above verilog:-
+
+![incomp_synth](https://github.com/user-attachments/assets/691045e7-39e0-4e6c-98bd-511b501fbe35)
+
+
+### Lab 3
+The verilog code for lab 3 is given below:-
+```verilog
+
+module incomp_if2 (input i0 , input i1 , input i2 , input i3, output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+	else if (i2)
+		y <= i3;
+
+end
+endmodule
+```
+
+![icomp2](https://github.com/user-attachments/assets/2f614956-e4af-4d29-80ae-13a167e7831d)
+
+
+### Lab 4
+The lab 4 is the synthesis of the above verilog code
+
+![incomp2synth](https://github.com/user-attachments/assets/880ff7bb-23fb-4362-bf8f-a2494a854b53)
+
+
+### Lab 5
+The verilog code for lab 5 is  given below:-
+```verilog
 
 
 
