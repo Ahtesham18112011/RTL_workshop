@@ -188,3 +188,27 @@ endmodule
 
 > [!IMPORTANT]
 > Steps to perform the above labs are already shown in [Day 1](https://github.com/Ahtesham18112011/RTL_workshop/tree/main/Day_1).
+
+
+## For loop in verilog
+In Verilog, a **for loop** is a procedural statement used within **procedural blocks** (like `initial`, `always`, or tasks/functions) to execute a set of statements multiple times based on a loop counter. It is primarily used for repetitive tasks, such as initializing arrays, generating patterns, or iterating over indices in simulation or synthesis.
+
+### Syntax of a For Loop in Verilog
+The general syntax of a `for` loop in Verilog is:
+
+```verilog
+for (initialization; condition; increment) begin
+    // Statements to execute
+end
+```
+
+- **Initialization**: Sets the initial value of the loop counter (e.g., `integer i = 0`).
+- **Condition**: A boolean expression checked before each iteration (e.g., `i < N`). The loop continues as long as the condition is true.
+- **Increment**: Updates the loop counter after each iteration (e.g., `i = i + 1` or `i++`).
+- **Statements**: The block of code executed in each iteration, enclosed in `begin` and `end` if multiple statements are included.
+
+### Key Characteristics
+- **Procedural Context**: For loops must appear inside procedural blocks like `initial`, `always`, tasks, or functions. They cannot be used in continuous assignments (`assign`) or module instantiations directly.
+- **Synthesis**: For loops are synthesizable if they have a fixed number of iterations (statically determinable at compile time) and describe hardware behavior (e.g., unrolled logic for combinational or sequential circuits). Loops with dynamic bounds or non-hardware-like behavior (e.g., delays) may not synthesize.
+- **Loop Counter**: Typically uses an `integer` or `reg` variable as the counter. The counter must be declared before the loop unless it’s a genvar in generate blocks (see below for generate context).
+
