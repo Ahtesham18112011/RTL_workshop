@@ -63,12 +63,11 @@ module ex (
     output reg y
 );
     always @(a, b, sel) begin
-case
-        if (sel == 1'b1)
-            y = a;
-       default : y = 1'b0; //default to 0
+case(sel)
+       1'b1 : y = a;
+       default : y = 1'b0; //default to 0    
 endcase
-    end
+end
 endmodule
 ```
 
