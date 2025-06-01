@@ -1,7 +1,6 @@
 # [RTL Design And Synthesis Workshop Using Sky130](https://www.vlsisystemdesign.com/rtl-design-using-verilog-with-sky130-technology/)
 
-Welcome to the **RTL Workshop**, a hands-on learning series focused on Verilog RTL design, simulation, synthesis, and digital circuit optimization. This repository is structured into multiple days, each with its own practical labs, code examples, and explanations to help you build a strong foundation in digital design and VLSI concepts.
-
+Welcome to the **RTL Workshop**, a hands-on learning series focused on Verilog RTL design, simulation, synthesis, and digital circuit optimization. This repository is structured into multiple days, each with its own practical labs, code examples, and explanations.
 ---
 
 ## Table of Contents
