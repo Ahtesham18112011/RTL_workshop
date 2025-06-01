@@ -55,11 +55,11 @@ Each day’s README includes:
 
 This project is licensed under the Attribution 4.0 International License - see the [LICENSE](./LICENSE) file for details.
 
-## Acknowledgments 👑
+## Acknowledgements 👑
 
 *  [Shon Taware](https://www.linkedin.com/in/shon-taware/)
 *  [Kunal Ghosh](https://www.linkedin.com/in/kunal-ghosh-vlsisystemdesign-com-28084836/)
+*  Open-source tools providers like Yosys and Sky130 PDK.
  
 
-## Author
-My name is Ahtesham Ahmed. I am currently studying in class 8 Army Public School No1, Jabalpur. You can also connect with me in [**Linkedin**](https://www.linkedin.com/in/ahtesham-ahmed-779845365/).
+![Author: Ahtesham](https://img.shields.io/badge/author-Ahtesham-blue)
