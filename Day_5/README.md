@@ -42,7 +42,7 @@ Latches are inferred when:
 
 ### Example of Latch Inference
 ```verilog
-module latch_infer (
+module mux_2_1 (
     input wire a, b, sel,
     output reg y
 );
