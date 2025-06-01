@@ -42,7 +42,7 @@ Latches are inferred when:
 
 ### Example of Latch Inference
 ```verilog
-module mux_2_1 (
+module ex (
     input wire a, b, sel,
     output reg y
 );
@@ -55,4 +55,31 @@ endmodule
 ```
 - **Problem**: When `sel` is 0, `y` is not assigned. The synthesis tool infers a latch to hold `y`’s previous value.
 - **Result**: The output `y` behaves like a latch, which was likely not the design intent for a combinational circuit.
+
+To solve this problem we can add the else statement, or add the **default** keyword, by adding a default statement the example will look like:-
+```verilog
+module ex (
+    input wire a, b, sel,
+    output reg y
+);
+    always @(a, b, sel) begin
+        if (sel == 1'b1)
+            y = a;
+       default : y = 1'b0; //default to 0
+    end
+endmodule
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
