@@ -186,4 +186,5 @@ endmodule
 ```
 ![Screenshot_2025-05-28_12-39-30](https://github.com/user-attachments/assets/3f6068f3-726d-4192-b3cd-f88b3611e752)
 
-
+> [!IMPORTANT]
+> Steps to perform the above labs are already shown in [Day 1][(https://github.com/Ahtesham18112011/RTL_workshop/tree/main/Day_1).
